@@ -1,4 +1,5 @@
 import React from "react";
+import { getFunName } from "../helpers";
 
 class StorePicker extends React.Component {
   myInput = React.createRef();
@@ -7,8 +8,9 @@ class StorePicker extends React.Component {
     // 1. Stop the form from submitting
     event.preventDefault();
     // 2. get the text form that input (DONT TOUCH THE DOM!)
-    console.log(this);
+    const storeName = this.myInput.current.value;
     // 3. Change the page to /store/whatever-they-entered
+    this.props.history.push(`/store/${storeName}`);
   };
 
   componentDidMount() {}
@@ -22,6 +24,7 @@ class StorePicker extends React.Component {
           required
           placeholder="Store Name"
           ref={this.myInput}
+          defaultValue={getFunName()}
         />
         <button type="submit">Visit Store</button>
       </form>
